@@ -103,3 +103,5 @@ def compute2(a):
 
 Honestly thought I got this right, but going to take some time to dig into where I went wrong.
 Will be pushing a fix for this later.
+
+Edit: did get it working with some hacks, but not a very clean solution.
