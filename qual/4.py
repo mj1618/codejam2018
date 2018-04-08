@@ -1,13 +1,13 @@
-from math import cos, pi, fabs, sin
+from math import cos, pi, fabs, sin, sqrt
 
 r = 0.5/cos(pi/4.0)
-
+r2 = 0.5 / cos(pi/4.0)
 def compute(a):
     return 2.0*r * sin(pi/2.0 - a)
 
 def compute2(a):
     xf = 0.5*cos(a)
-    xl = r*cos(pi/4.0 - a)
+    xl = r2*cos(pi/4.0 - a)
     th = xl - xf
     # print th
     assert th >=0.0
@@ -22,7 +22,7 @@ def compute2(a):
 # print compute(0)
 # print compute2(0)
 # print compute2(pi/4.0)
-# print ""
+# # print ""
 # print compute2(pi/8.0)
 # exit()
 # assert abs(compute2(0)-compute(0)) < 0.00000001
@@ -67,9 +67,11 @@ for testCase in range(1, testCases + 1):
             else:
                 l = (h-l)/2.0+l
             if (h-l)<0.00000000001:
+                print 'exiting early'
                 exit()
         print("Case #" + str(testCase) + ": ")
         x = (h-l)/2.0+l
+        print x
         print form(0.5* cos(x))+" "+form(0.5* sin(x))+" "+"0"
 
         print form(0.25* sin(x))+" "+form(0.25* cos(x))+" "+form(r/2.0)

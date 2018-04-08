@@ -87,12 +87,15 @@ I worked this out, but then struggled getting the details of the math right.
 
 Where I got up to was to calculate the corners required, and then to add the area of the 2 triangles of the hexagon and then the rectangle in the middle.
 
-This is what I got, but turned out to give wrong results:
+This is what I got, but turned out to give wrong results. I couldn't get it to find an area of 1.732050 which is the upper bound:
 ```python
+r = 0.5/cos(pi/4.0)
+r2 = 0.5 / cos(pi/4.0)
 def compute2(a):
     xf = 0.5*cos(a)
-    xl = r*cos(pi/4.0 - a)
+    xl = r2*cos(pi/4.0 - a)
     th = xl - xf
+    assert th >=0.0
     ts = 2.0 * (th*r)
     rect = 2.0*r * (2.0 * xf)
     return rect + ts
