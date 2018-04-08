@@ -87,5 +87,16 @@ I worked this out, but then struggled getting the details of the math right.
 
 Where I got up to was to calculate the corners required, and then to add the area of the 2 triangles of the hexagon and then the rectangle in the middle.
 
+This is what I got, but turned out to give wrong results:
+```python
+def compute2(a):
+    xf = 0.5*cos(a)
+    xl = r*cos(pi/4.0 - a)
+    th = xl - xf
+    ts = 2.0 * (th*r)
+    rect = 2.0*r * (2.0 * xf)
+    return rect + ts
+```
+
 Honestly thought I got this right, but going to take some time to dig into where I went wrong.
 Will be pushing a fix for this later.

@@ -17,7 +17,7 @@ def compute2(a):
     ts = 2.0 * (th*r)
     rect = 2.0*r * (2.0 * xf)
 
-    return rect + ts+ts
+    return rect + ts
 
 # print compute(0)
 # print compute2(0)
