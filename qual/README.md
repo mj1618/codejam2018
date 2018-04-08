@@ -2,6 +2,8 @@
 
 ## Qual Round
 
+Most interesting thing I found out from this round, the amazing cube shadow theorem: https://www.youtube.com/watch?v=rAHcZGjKVvg
+
 Problem description:
 https://codejam.withgoogle.com/2018/challenges/00000000000000cb/dashboard
 
@@ -10,59 +12,12 @@ Qual rounds are always a bit of fun because there's no time pressure. Interestin
 I ended up with a score of 69/100 woohoo ;) - and came in 2574 place / 24589.
 The 2 problems I got wrong were the second data sets of the 1st and 4th
 
-### 1. Saving the universe again
-https://github.com/mj1618/codejam2018/blob/master/qual/1-fixed.py
-
-This problem I distilled down to a greedy algorithm, swapping the highest value CS combination each iteration.
-Unfortunately I messed it up and my code ended up choosing the lowest value rather than the highest.
-Anti-greedy.
-
-Hence why I pushed a fix 1-fixed.py with the only change being to look for the last known CS combination.
-
-The crux of this problem is the greedy part to find the best value CS combo:
-```python
-def hack(s):
-    x = -1
-    for (i,c) in reversed(list(enumerate(s))):
-        if i<len(s)-1 and i>=0 and s[i]=='C' and s[i+1]=='S':
-            x = i
-            break
-    return s[:x]+'S'+'C'+s[x+2:]
-```
-
-### 2. Trouble Sort
-https://github.com/mj1618/codejam2018/blob/master/qual/2.py
-
-This clicked with me straight away, if you setup a problem with 10 numbers and draw how trouble sort works on a piece of paper the problem becomes clear.
-Only odds are sorted together, and only evens are sorted together.
-
-Solution:
-1. Sort the odds and evens seperately and zip them back together
-```python
-evens = [x for (i,x) in enumerate(ls) if i%2==0]
-odds = [x for (i,x) in enumerate(ls) if i%2==1]
-evens.sort()
-odds.sort()
-ls = [y for x in map(None,evens,odds) for y in x]
-```
-2. Then simply find the first occurrence of a high number and then a low number
-
-### 3. Go Gopher!
-https://github.com/mj1618/codejam2018/blob/master/qual/3.py
-
-This one was super fun, took a minute to read through the interactive guide.
-It turned out this problem was really easy because complexity doesn't play much of a factor.
-
-All I did to draw a good rectangle given the Gopher randomly chooses between 9 squares is just go square by square.
-E.g. Pick the first square on the grid - 0,0 - 2,2 - and keep choosing the middle point 1,1 until that square is full.
-Then go the next square.
-
-I tested on a=200 and turned out this brute-force style solution was well fast enough.
-
-Not really any super interesting code in this one.
-
 ### 4. Cubic UFO
 https://github.com/mj1618/codejam2018/blob/master/qual/4-matrix-soln.py
+
+So just on the cube theorem, apparently the shadow a unit cube casts is exactly equal to the diff between the cubes highest and lowest points.
+This is apparently a recent discovery and would simplify this problem greatly.
+Also it is interesting that you can fit a cube greater than equal to the size of another cube, through that smaller cube!
 
 Oh man these ones are always tricky for me.
 I tend to spend time getting the details right when I have a solution that works.
@@ -125,4 +80,55 @@ def poly_area(pts):
         a += abs(pts_hull[i][0] * pts_hull[j][1]-pts_hull[j][0] * pts_hull[i][1])
     result = a / 2.0
     return result
+```
+
+### 3. Go Gopher!
+https://github.com/mj1618/codejam2018/blob/master/qual/3.py
+
+This one was super fun, took a minute to read through the interactive guide.
+It turned out this problem was really easy because complexity doesn't play much of a factor.
+
+All I did to draw a good rectangle given the Gopher randomly chooses between 9 squares is just go square by square.
+E.g. Pick the first square on the grid - 0,0 - 2,2 - and keep choosing the middle point 1,1 until that square is full.
+Then go the next square.
+
+I tested on a=200 and turned out this brute-force style solution was well fast enough.
+
+Not really any super interesting code in this one.
+
+### 2. Trouble Sort
+https://github.com/mj1618/codejam2018/blob/master/qual/2.py
+
+This clicked with me straight away, if you setup a problem with 10 numbers and draw how trouble sort works on a piece of paper the problem becomes clear.
+Only odds are sorted together, and only evens are sorted together.
+
+Solution:
+1. Sort the odds and evens seperately and zip them back together
+```python
+evens = [x for (i,x) in enumerate(ls) if i%2==0]
+odds = [x for (i,x) in enumerate(ls) if i%2==1]
+evens.sort()
+odds.sort()
+ls = [y for x in map(None,evens,odds) for y in x]
+```
+2. Then simply find the first occurrence of a high number and then a low number
+
+### 1. Saving the universe again
+https://github.com/mj1618/codejam2018/blob/master/qual/1-fixed.py
+
+This problem I distilled down to a greedy algorithm, swapping the highest value CS combination each iteration.
+Unfortunately I messed it up and my code ended up choosing the lowest value rather than the highest.
+Anti-greedy.
+
+Hence why I pushed a fix 1-fixed.py with the only change being to look for the last known CS combination.
+
+The crux of this problem is the greedy part to find the best value CS combo:
+```python
+def hack(s):
+    x = -1
+    for (i,c) in reversed(list(enumerate(s))):
+        if i<len(s)-1 and i>=0 and s[i]=='C' and s[i+1]=='S':
+            x = i
+            break
+    return s[:x]+'S'+'C'+s[x+2:]
 ```
