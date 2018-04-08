@@ -95,7 +95,11 @@ After that there's a simple algo to get the area from a bunch of pts.
 Used the same binary search as before.
 
 The two interesting parts of the code is the rotation:
+
 ```python
+# pt: a 3d pt, e.g. [0,1,0]
+# v: unit vector, e.g. xaxis [1, 0, 0]
+# a: an angle to rotate
 def rotate(pt, v, a):
     x = [cos(a)+sqrd(v[0])*(1-cos(a)), v[0]*v[1]*(1-cos(a)) - v[2]*sin(a), v[0]*v[2]*(1-cos(a))+v[1]*sin(a)]
     y = [v[0]*v[1]*(1-cos(a))+v[2]*sin(a), cos(a)+sqrd(v[1])*(1-cos(a)), v[1]*v[2]*(1-cos(a))-v[0]*sin(a)]
@@ -107,10 +111,10 @@ def rotate(pt, v, a):
     ]
     return [sum(m) for m in mapply]
 ```
-Given a 3d pt list, v which is a unit vector, e.g. xaxis [1, 0, 0] and an angle to tilt a.
 
 And the other interesting part is the convex hull + area calc:
 ```python
+# pts: list of 2d pts to calculate the convex hull area for
 def poly_area(pts):
     hull = ConvexHull(pts)
     pts_hull = [pts[i] for i in hull.vertices]
