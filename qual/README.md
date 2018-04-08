@@ -62,7 +62,7 @@ I tested on a=200 and turned out this brute-force style solution was well fast e
 Not really any super interesting code in this one.
 
 ### 4. Cubic UFO
-https://github.com/mj1618/codejam2018/blob/master/qual/4.py
+https://github.com/mj1618/codejam2018/blob/master/qual/4-matrix-soln.py
 
 Oh man these ones are always tricky for me.
 I tend to spend time getting the details right when I have a solution that works.
@@ -85,23 +85,40 @@ The next part was hard, anything above 1.414213 requires a max tilt for the rect
 And then an additional tilt on the other axis to make a hexagon.
 I worked this out, but then struggled getting the details of the math right.
 
-Where I got up to was to calculate the corners required, and then to add the area of the 2 triangles of the hexagon and then the rectangle in the middle.
+That's why I rewrote the solution the "proper" way using rotation matrices.
+Had to look up how they worked, and with a bit of testing got them working.
 
-This is what I got, but turned out to give wrong results. I couldn't get it to find an area of 1.732050 which is the upper bound:
+Then needed a better area calc, which is where I went wrong on the first attempt.
+The best way is just to take the (x,z) parts of each point on the cube and then find the convex hull.
+After that there's a simple algo to get the area from a bunch of pts.
+
+Used the same binary search as before.
+
+The two interesting parts of the code is the rotation:
 ```python
-r = 0.5/cos(pi/4.0)
-r2 = 0.5 / cos(pi/4.0)
-def compute2(a):
-    xf = 0.5*cos(a)
-    xl = r2*cos(pi/4.0 - a)
-    th = xl - xf
-    assert th >=0.0
-    ts = 2.0 * (th*r)
-    rect = 2.0*r * (2.0 * xf)
-    return rect + ts
+def rotate(pt, v, a):
+    x = [cos(a)+sqrd(v[0])*(1-cos(a)), v[0]*v[1]*(1-cos(a)) - v[2]*sin(a), v[0]*v[2]*(1-cos(a))+v[1]*sin(a)]
+    y = [v[0]*v[1]*(1-cos(a))+v[2]*sin(a), cos(a)+sqrd(v[1])*(1-cos(a)), v[1]*v[2]*(1-cos(a))-v[0]*sin(a)]
+    z = [v[2]*v[0]*(1-cos(a))-v[1]*sin(a), v[1]*v[2]*(1-cos(a))+v[0]*sin(a), cos(a)+sqrd(v[2])*(1-cos(a))]
+    mapply = [
+        [pt[i]*m for (i,m) in enumerate(x)],
+        [pt[i]*m for (i,m) in enumerate(y)],
+        [pt[i]*m for (i,m) in enumerate(z)]
+    ]
+    return [sum(m) for m in mapply]
 ```
+Given a 3d pt list, v which is a unit vector, e.g. xaxis [1, 0, 0] and an angle to tilt a.
 
-Honestly thought I got this right, but going to take some time to dig into where I went wrong.
-Will be pushing a fix for this later.
-
-Edit: did get it working with some hacks, but not a very clean solution.
+And the other interesting part is the convex hull + area calc:
+```python
+def poly_area(pts):
+    hull = ConvexHull(pts)
+    pts_hull = [pts[i] for i in hull.vertices]
+    n = len(pts_hull) # of corners
+    a = 0.0
+    for i in range(n):
+        j = (i + 1) % n
+        a += abs(pts_hull[i][0] * pts_hull[j][1]-pts_hull[j][0] * pts_hull[i][1])
+    result = a / 2.0
+    return result
+```
