@@ -11,6 +11,7 @@ I ended up with a score of 69/100 woohoo ;) - and came in 2574 place / 24589.
 The 2 problems I got wrong were the second data sets of the 1st and 4th
 
 ### 1. Saving the universe again
+https://github.com/mj1618/codejam2018/blob/master/qual/1-fixed.py
 
 This problem I distilled down to a greedy algorithm, swapping the highest value CS combination each iteration.
 Unfortunately I messed it up and my code ended up choosing the lowest value rather than the highest.
@@ -30,6 +31,7 @@ def hack(s):
 ```
 
 ### 2. Trouble Sort
+https://github.com/mj1618/codejam2018/blob/master/qual/2.py
 
 This clicked with me straight away, if you setup a problem with 10 numbers and draw how trouble sort works on a piece of paper the problem becomes clear.
 Only odds are sorted together, and only evens are sorted together.
@@ -46,6 +48,7 @@ ls = [y for x in map(None,evens,odds) for y in x]
 2. Then simply find the first occurrence of a high number and then a low number
 
 ### 3. Go Gopher!
+https://github.com/mj1618/codejam2018/blob/master/qual/3.py
 
 This one was super fun, took a minute to read through the interactive guide.
 It turned out this problem was really easy because complexity doesn't play much of a factor.
@@ -56,17 +59,10 @@ Then go the next square.
 
 I tested on a=200 and turned out this brute-force style solution was well fast enough.
 
-The only slightly interesting part was this code that decided if the current square was full:
-```python
-def grid_full(grid, x):
-    for i in range(3):
-        for j in range(3):
-            if grid[i+x[0]-1][j+x[1]-1] != 'X':
-                return False
-    return True
-```
+Not really any super interesting code in this one.
 
 ### 4. Cubic UFO
+https://github.com/mj1618/codejam2018/blob/master/qual/4.py
 
 Oh man these ones are always tricky for me.
 I tend to spend time getting the details right when I have a solution that works.
