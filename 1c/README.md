@@ -23,8 +23,7 @@ Find a word that isn't in a list of excluded words (maximum 2000 excluded words)
 The recursive solution was really neat for this one, I was guaranteed not to hit a stack limit as the maximum levels is 10.
 
 `python
-# only 'curr' is not a constant
-def find_next_word(N, L, ls, given, curr):
+def find_next_word(N, L, ls, given, curr): # only 'curr' is not a constant
     if curr in given: # if in the excluded words list return False
         return False
 
