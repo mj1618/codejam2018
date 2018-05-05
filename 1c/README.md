@@ -7,10 +7,10 @@ I had to deal with a production issue during round 1a.
 I completely bombed round 1b due to it starting at midnight, I hit a rounding issue in python and I was printing doubles instead of ints in the result!
 
 What was the rounding error? Try putting this in your py interpreter:
-`python
+```python
 from math import ceil
 ceil((0.5 - 10.1%1) / 0.1)
-`
+```
 I learnt that one the hard way!
 
 ### Problem 1 - A Whole New World
@@ -22,7 +22,7 @@ Find a word that isn't in a list of excluded words (maximum 2000 excluded words)
 
 The recursive solution was really neat for this one, I was guaranteed not to hit a stack limit as the maximum levels is 10.
 
-`python
+```python
 def find_next_word(N, L, ls, given, curr): # only 'curr' is not a constant
     if curr in given: # if in the excluded words list return False
         return False
@@ -36,7 +36,7 @@ def find_next_word(N, L, ls, given, curr): # only 'curr' is not a constant
             return res
 
     return False
-`
+```
 
 Given there is only 2000 exlcuded words, I wasn't too worried about hitting the worst case scenario of 26^10 words, we're bound to find one that works well before then!
 
