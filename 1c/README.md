@@ -1,6 +1,7 @@
 # codejam2018
 
 ## Round 1c
+https://codejam.withgoogle.com/2018/challenges/0000000000007765/analysis
 
 I didn't make it through the prev 2 qual rounds, but I came 896 in this one and got through!
 I had to deal with a production issue during round 1a.
@@ -43,11 +44,13 @@ Given there is only 2000 exlcuded words, I wasn't too worried about hitting the 
 ### Problem 3 - Ant Stack
 I did this problem next as I figured I might be able to get the small problem set out.
 
-This one I recognised as a longest increasing subsequence problem, except with a twist. I knew I had to implement longest increasing subsequence because the worst case had N as 10^5, meaning the algo was probably O(N log(N)).
+This one I recognised as a longest increasing subsequence problem. The worst case had N as 10^5, meaning the algo was probably O(N log(N)). LIS is in fact O(N log(N)). Luckily I didn't try to implement it as it turns out there is a much better DP solution
 
 The twist was there was also a condition between the elements - the sum of the rest of the elements had to be a maximum of 6 times the weight of the current element.
 
-I barely understand longest increasing subsequence, I knew I had no chance of producing the optimal soln to this. So I implemented a bruteforce solution that ran fast enough for the small problem set. And I was done with this problem pretty soon after that!
+I barely understand LIS, I knew I had no chance of producing the optimal soln to this. So I implemented a bruteforce solution (but similar to LIS) that ran fast enough for the small problem set. And I was done with this problem pretty soon after that!
+
+What I didn't realise is that if you look at the problem backwards it becomes far simpler - I think I might have a crack with this view on it and see if I could've got it right by just taking a different view on the problem!
 
 ### Problem 2 - Lollipop shop
 
