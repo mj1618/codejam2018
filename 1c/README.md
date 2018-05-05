@@ -4,7 +4,7 @@
 
 I didn't make it through the prev 2 qual rounds, but I came 896 in this one and got through!
 I had to deal with a production issue during round 1a.
-I completely bombed round 1b due to it starting at midnight, I hit an odd rounding issue in python and I was printing doubles instead of ints in the result!
+I completely bombed round 1b due to it starting at midnight, I hit a rounding issue in python and I was printing doubles instead of ints in the result!
 
 What was the rounding error? Try putting this in your py interpreter:
 `python
@@ -48,7 +48,7 @@ This one I recognised as a longest increasing subsequence problem, except with a
 
 The twist was there was also a condition between the elements - the sum of the rest of the elements had to be a maximum of 6 times the weight of the current element.
 
-I barely understand longest increasing subsequence, I knew I had no chance of producing the optimal soln to this. So I implemented a bruteforce solution that ran fast enough for the small problem set. And I was done pretty soon after that!
+I barely understand longest increasing subsequence, I knew I had no chance of producing the optimal soln to this. So I implemented a bruteforce solution that ran fast enough for the small problem set. And I was done with this problem pretty soon after that!
 
 ### Problem 2 - Lollipop shop
 
