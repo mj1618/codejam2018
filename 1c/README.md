@@ -52,6 +52,39 @@ I barely understand LIS, I knew I had no chance of producing the optimal soln to
 
 What I didn't realise is that if you look at the problem backwards it becomes far simpler - I think I might have a crack with this view on it and see if I could've got it right by just taking a different view on the problem!
 
+EDIT:
+DP solution is way easier. One thing to realise is the max size of the soln is around 150 - meaning it is safe to iterate the entire soln set every iteration, making the complexity O(N*K) where K is ~150. The solution turns out to be much simpler than LIS - and also much simpler if you iterate forwards over the input, which is backwards according to the problem set.
+
+```python
+
+testCases = int(raw_input())
+
+for testCase in range(1, testCases + 1):
+    N = int(raw_input())
+    ws = map(int, raw_input().split())
+    dp = [] # contains the min sum of all weights up to and including the current index
+
+    # iterate all weights
+    for i in range(0, len(ws), 1):
+        added = False
+        w = ws[i]
+        last = dp[-1] if len(dp)>0 else 0
+
+        # add the new weight to the end if it is safe to do so
+        if last <= 6*w:
+            dp.append(w + last)
+            added = True
+
+        # go backwards and update all other weight sums to reduce them if possible
+        for j in range(len(dp) + (-1 if added else 0) -1, -1, -1):
+            dj = dp[j]
+            dj1 = dp[j-1] if j>0 else 0
+            if w + dj1 < dj and dj1 <= 6*w:
+                dp[j] = w + dj1
+
+    print "Case #" + str(testCase) + ": "+str(len(dp))
+```
+
 ### Problem 2 - Lollipop shop
 
 This one was a bit tricky, but turned out to be solevd with a bit of luck.
