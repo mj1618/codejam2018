@@ -7,7 +7,7 @@ I didn't make it through the prev 2 qual rounds, but I came 896 in this one and 
 I had to deal with a production issue during round 1a.
 I completely bombed round 1b due to it starting at midnight, I hit a rounding issue in python and I was printing doubles instead of ints in the result!
 
-What was the rounding error? [Check here](rounding-error)
+What was the rounding error? [Check here](#rounding-error)
 
 ### Problem 1 - A Whole New World
 
@@ -104,11 +104,11 @@ I learnt that one the hard way!
 
 Here's the explanation from my smart friend Rowan (sqweek) -
 
-“Rounding error in python” seems a bit unfair, as the problem is 0.1 cannot be exactly represented under IEEE754 which has nothing to do with python. Pretty sure many languages would give you the same result.
-Floating point is a bitch, but there’s better ways to think of it than “rounding error”. If you think about the set of real numbers, there’s an infinite amount of them. But we only have 2^32 floats (or 2^64 doubles) to work with. So each floating point value represents a region of the real number line.
-The concept of an exact decimal value doesn’t really exist once you hit the FPU. It just deals with the closest “bin”.
-In that sense floating point is much the same as fixed point. The only real difference is that the size of the bins is [numerically] constant with fixed point, whereas the bin size grows/shrinks along with the number’s magnitude in floating point.
-Converting floats to strings is surprisingly useful at times, because the formatting routines usually have logic that goes “yeah I know this bin is technically centered on 0.100000000000000000001355252715606880542509 but u know what I’m just going to call that 0.1”
-(I’m yet to find a better way to convert a float -> double than going via string. A straight typecast in most languages just puts zeros in the lower 32-bits which is really not what you want when it comes to non-representable decimals)
+> “Rounding error in python” seems a bit unfair, as the problem is 0.1 cannot be exactly represented under IEEE754 which has nothing to do with python. Pretty sure many languages would give you the same result.
+> Floating point is a bitch, but there’s better ways to think of it than “rounding error”. If you think about the set of real numbers, there’s an infinite amount of them. But we only have 2^32 floats (or 2^64 doubles) to work with. So each floating point value represents a region of the real number line.
+> The concept of an exact decimal value doesn’t really exist once you hit the FPU. It just deals with the closest “bin”.
+> In that sense floating point is much the same as fixed point. The only real difference is that the size of the bins is [numerically] constant with fixed point, whereas the bin size grows/shrinks along with the number’s magnitude in floating point.
+> Converting floats to strings is surprisingly useful at times, because the formatting routines usually have logic that goes “yeah I know this bin is technically centered on 0.100000000000000000001355252715606880542509 but u know what I’m just going to call that 0.1”
+> (I’m yet to find a better way to convert a float -> double than going via string. A straight typecast in most languages just puts zeros in the lower 32-bits which is really not what you want when it comes to non-representable decimals)
 
-(Matt: I still blame python)
+(I still blame python)
